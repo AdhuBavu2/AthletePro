@@ -1,4 +1,4 @@
-# IB-Computer-Science-IA
+# AthletePro
 
 This is my IA for the class IB Computer Science HL.  
 
