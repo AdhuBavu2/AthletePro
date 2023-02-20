@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.*;
 
 public class LoginScreenStudent implements ActionListener, MouseListener {
     private JFrame frame;
@@ -20,6 +21,8 @@ public class LoginScreenStudent implements ActionListener, MouseListener {
     private JPasswordField passwordField;
     private JButton studentLoginButton;
     private JLabel studentForgotPassword;
+    private JLabel studentCreateAccount;
+    private JLabel adminLabel;
     private JPanel panel;
     private ImageIcon logoImage;
     private JLabel title;
@@ -81,17 +84,24 @@ public class LoginScreenStudent implements ActionListener, MouseListener {
         // Student Login Button
         studentLoginButton = new JButton("Log In");
         studentLoginButton.addActionListener(this);
-        studentLoginButton.setBounds(90, 440, 225, 33);
+        studentLoginButton.setBounds(90, 420, 225, 33);
         studentLoginButton.setFocusable(false);
         studentLoginButton.setBackground(new Color(0, 100, 246));
         studentLoginButton.setOpaque(true);
         background.add(studentLoginButton);
 
+        // Forgot Password Label
         studentForgotPassword = new JLabel("Forgot Password?");
         studentForgotPassword.addMouseListener(this);
         studentForgotPassword.setBounds(90, 375, 110, 25);
         studentForgotPassword.setBackground(new Color(246, 254, 219));
         background.add(studentForgotPassword);
+
+        //
+        studentCreateAccount = new JLabel("Don't have an account?");
+        studentCreateAccount.addMouseListener(this);
+        studentCreateAccount.setBounds(90, 453, 140, 25);
+        background.add(studentCreateAccount);
 
         // Frame
         frame = new JFrame("Login Screen");
@@ -112,15 +122,43 @@ public class LoginScreenStudent implements ActionListener, MouseListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == studentLoginButton) {
-            MainFrame mainFrame = new MainFrame();
+        if (e.getSource() == studentLoginButton) {
+            String studentUserID = userIDField.getText();
+            String studentPassword = String.valueOf(passwordField.getPassword());
+
+            try {
+                Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/iadb", "root", "FBLA2023");
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery("select * from students");
+
+                while(resultSet.next()) {
+                    if(resultSet.getString("userName").equals(studentUserID) && resultSet.getString("password").equals(studentPassword)) {
+                        JOptionPane.showMessageDialog(null, "Login Successful");
+                        frame.dispose();
+                        MainFrame mainFrame = new MainFrame(resultSet.getString("name"));
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Wrong Username or Password");
+                    }
+                }
+
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
         }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        frame.dispose();
-        ForgotPasswordStudent forgotPasswordStudent = new ForgotPasswordStudent();
+        if(e.getSource() == studentForgotPassword) {
+            frame.dispose();
+            ForgotPasswordStudent forgotPasswordStudent = new ForgotPasswordStudent();
+        }
+
+        else if(e.getSource() == studentCreateAccount) {
+            frame.dispose();
+            CreateAccountStudent createAccountStudent = new CreateAccountStudent();
+        }
+
     }
 
     @Override
@@ -135,11 +173,25 @@ public class LoginScreenStudent implements ActionListener, MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        studentForgotPassword.setForeground(Color.RED);
+        if(e.getSource() == studentForgotPassword) {
+            studentForgotPassword.setForeground(Color.RED);
+        }
+
+        else if(e.getSource() == studentCreateAccount) {
+            studentCreateAccount.setForeground(Color.GREEN);
+        }
+
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        studentForgotPassword.setForeground(Color.BLACK);
+        if(e.getSource() == studentForgotPassword) {
+            studentForgotPassword.setForeground(Color.BLACK);
+        }
+
+        else if(e.getSource() == studentCreateAccount) {
+            studentCreateAccount.setForeground(Color.BLACK);
+        }
+
     }
 }

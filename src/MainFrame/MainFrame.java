@@ -1,7 +1,7 @@
 package MainFrame;
 
 public class MainFrame {
-    public MainFrame() {
-        System.out.println("hello, world!");
+    public MainFrame(String name) {
+        System.out.println("hello, " + name);
     }
 }
