@@ -46,14 +46,14 @@ public class LoginScreenStudent implements ActionListener {
         // Panel
         panel = new JPanel();
         panel.setLayout(null);
-        panel.setBackground(new java.awt.Color(0, 120, 74));
+        panel.setBackground(new java.awt.Color(20, 100, 246));
         panel.setBounds(0, 0, 300, 600);
         panel.setSize(300, 600);
 
         // Logo Image
-        logoImage = new ImageIcon("Images/logo-taylorsville-high.png");
+        logoImage = new ImageIcon("Images/App logo.png");
         title = new JLabel(logoImage);
-        title.setBounds(20, 150, 250, 170);
+        title.setBounds(0, 150, 300, 200);
         panel.add(title);
 
 
