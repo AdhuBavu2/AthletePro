@@ -6,32 +6,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class LoginScreenStudent implements ActionListener {
+public class LoginScreenStudent implements ActionListener, MouseListener {
     private JFrame frame;
 
     private JPanel background;
     private JLabel studentCenterTitle;
-    private JLabel adminCenterTitle;
-
     private JLabel userID;
     private JLabel password;
     private JTextField userIDField;
     private JPasswordField passwordField;
     private JButton studentLoginButton;
-    private JButton studentForgotPassword;
-    private JLabel messageLabel;
-
-    private JLabel adminUserID;
-    private JLabel adminPassword;
-    private JTextField adminIDField;
-    private JPasswordField adminPasswordField;
-    private JButton adminLoginButton;
-
+    private JLabel studentForgotPassword;
     private JPanel panel;
     private ImageIcon logoImage;
     private JLabel title;
-    private JButton createAccount;
+
 
 
     public LoginScreenStudent() {
@@ -91,16 +83,14 @@ public class LoginScreenStudent implements ActionListener {
         studentLoginButton.addActionListener(this);
         studentLoginButton.setBounds(90, 440, 225, 33);
         studentLoginButton.setFocusable(false);
-        studentLoginButton.setBackground(new Color(0, 120, 74));
+        studentLoginButton.setBackground(new Color(0, 100, 246));
         studentLoginButton.setOpaque(true);
         background.add(studentLoginButton);
 
-        studentForgotPassword = new JButton("Change Password");
-        studentForgotPassword.addActionListener(this);
-        studentForgotPassword.setBounds(90, 400, 225, 33);
-        studentForgotPassword.setFocusable(false);
-        studentForgotPassword.setBackground(Color.RED);
-        studentForgotPassword.setOpaque(true);
+        studentForgotPassword = new JLabel("Forgot Password?");
+        studentForgotPassword.addMouseListener(this);
+        studentForgotPassword.setBounds(90, 375, 110, 25);
+        studentForgotPassword.setBackground(new Color(246, 254, 219));
         background.add(studentForgotPassword);
 
         // Frame
@@ -125,5 +115,31 @@ public class LoginScreenStudent implements ActionListener {
         if(e.getSource() == studentLoginButton) {
             MainFrame mainFrame = new MainFrame();
         }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        frame.dispose();
+        ForgotPasswordStudent forgotPasswordStudent = new ForgotPasswordStudent();
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        studentForgotPassword.setForeground(Color.RED);
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        studentForgotPassword.setForeground(Color.BLACK);
     }
 }
