@@ -23,6 +23,7 @@ public class ForgotPasswordStudent implements ActionListener {
     private JPasswordField newPasswordField;
     private JButton confirmButton;
     private JButton search;
+    private ImageIcon backImage;
     private JButton back;
 
     public ForgotPasswordStudent() {
@@ -49,32 +50,32 @@ public class ForgotPasswordStudent implements ActionListener {
         // Title
         title = new JLabel("Change Password");
         title.setBounds(100, 20, 350, 100);
-        title.setFont(new Font("Segoe Print", Font.BOLD, 32));
+        title.setFont(new Font("Open Sans", Font.BOLD, 32));
         title.setForeground(Color.BLACK);
         panel1.add(title);
 
         // Username text
         userID = new JLabel("Username");
         userID.setBounds(100, 125, 180, 50);
-        userID.setFont(new Font("Segoe Print", Font.BOLD, 16));
+        userID.setFont(new Font("Open Sans", Font.BOLD, 16));
         panel1.add(userID);
 
         // Security Question text
         securityQuestion = new JLabel("Security Question");
         securityQuestion.setBounds(100, 205, 180, 50);
-        securityQuestion.setFont(new Font("Segoe Print", Font.BOLD, 16));
+        securityQuestion.setFont(new Font("Open Sans", Font.BOLD, 16));
         panel1.add(securityQuestion);
 
         // Answer text
         answer = new JLabel("Answer");
         answer.setBounds(100, 285, 180, 50);
-        answer.setFont(new Font("Segoe Print", Font.BOLD, 16));
+        answer.setFont(new Font("Open Sans", Font.BOLD, 16));
         panel1.add(answer);
 
         // New password text
         newPassword = new JLabel("New Password");
         newPassword.setBounds(100, 365, 180, 50);
-        newPassword.setFont(new Font("Segoe Print", Font.BOLD, 16));
+        newPassword.setFont(new Font("Open Sans", Font.BOLD, 16));
         panel1.add(newPassword);
 
         // UserID Field
@@ -102,7 +103,7 @@ public class ForgotPasswordStudent implements ActionListener {
         search.addActionListener(this);
         search.setBounds(345, 170, 100, 33);
         search.setFocusable(false);
-        search.setBackground(new Color(0, 180, 0));
+        search.setBackground(new Color(0, 100, 246));
         search.setOpaque(true);
         panel1.add(search);
 
@@ -111,15 +112,16 @@ public class ForgotPasswordStudent implements ActionListener {
         confirmButton.addActionListener(this);
         confirmButton.setBounds(100, 490, 225, 33);
         confirmButton.setFocusable(false);
-        confirmButton.setBackground(new Color(0, 180, 0));
+        confirmButton.setBackground(new Color(0, 100, 246));
         confirmButton.setOpaque(true);
         panel1.add(confirmButton);
 
-        back = new JButton("Back");
+        backImage = new ImageIcon("Images/Back Button.png");
+        back = new JButton(backImage);
         back.addActionListener(this);
-        back.setBounds(5, 15, 100, 26);
+        back.setBounds(5, 15, 40, 38);
         back.setFocusable(false);
-        back.setBackground(new Color(0, 180, 0));
+        back.setBackground(new Color(246, 254, 219));
         back.setOpaque(true);
         panel1.add(back);
 
