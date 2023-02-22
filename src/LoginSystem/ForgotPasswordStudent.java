@@ -154,8 +154,36 @@ public class ForgotPasswordStudent implements ActionListener {
                 resultSet.close();
 
             } catch(SQLException sqlException) {
-
+                JOptionPane.showMessageDialog(null, "Error in Connection");
             }
+        }
+
+        if(e.getSource() == confirmButton) {
+            String userName = userIDField.getText();
+            String newPassword = String.valueOf(newPasswordField.getPassword());
+            String securityQuestion = securityQuestionField.getText();
+            String answer1 = answerField.getText();
+
+            try {
+                Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/iadb", "root", "FBLA2023");
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery("select answer from students where userName='"+userName+"'");
+
+                resultSet.next();
+                if(resultSet.getString("answer").equals(answer1)) {
+                    statement.executeUpdate("update students set password='"+newPassword+"' where userName='"+userName+"' and answer='"+answer1+"'");
+                    JOptionPane.showMessageDialog(null, "Your password has been updated");
+                    frame.dispose();
+                    LoginScreenStudent loginScreenStudent = new LoginScreenStudent();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please enter correct username or answer");
+                }
+
+            } catch(SQLException sqlException) {
+                JOptionPane.showMessageDialog(null, "Error in connection");
+            }
+
+
         }
     }
 }
