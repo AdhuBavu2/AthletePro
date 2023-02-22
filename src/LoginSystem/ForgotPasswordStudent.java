@@ -182,8 +182,11 @@ public class ForgotPasswordStudent implements ActionListener {
             } catch(SQLException sqlException) {
                 JOptionPane.showMessageDialog(null, "Error in connection");
             }
+        }
 
-
+        if(e.getSource() == back) {
+            frame.dispose();
+            LoginScreenStudent loginScreenStudent = new LoginScreenStudent();
         }
     }
 }
