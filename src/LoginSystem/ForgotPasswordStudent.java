@@ -130,6 +130,7 @@ public class ForgotPasswordStudent implements ActionListener {
         frame.add(panel);
         frame.setSize(800, 600);
         frame.setLayout(null);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
