@@ -142,7 +142,7 @@ public class ForgotPasswordStudent implements ActionListener {
             String userName = userIDField.getText();
 
             try {
-                Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/iadb", "root", "FBLA2023");
+                Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/computer_science_ia", "root", "");
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery("select securityQuestion from students where userName='"+userName+"'");
 
@@ -166,7 +166,7 @@ public class ForgotPasswordStudent implements ActionListener {
             String answer1 = answerField.getText();
 
             try {
-                Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/iadb", "root", "FBLA2023");
+                Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/computer_science_ia", "root", "");
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery("select answer from students where userName='"+userName+"'");
 

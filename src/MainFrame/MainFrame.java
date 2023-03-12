@@ -1,5 +1,6 @@
 package MainFrame;
 
+import LoginSystem.LoginScreenStudent;
 import MainFrame.Panels.*;
 
 import javax.swing.*;
@@ -77,6 +78,10 @@ public class MainFrame implements ActionListener, MouseListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == logoutButton) {
+            frame.dispose();
+            LoginScreenStudent loginScreenStudent = new LoginScreenStudent();
+        }
 
     }
 
