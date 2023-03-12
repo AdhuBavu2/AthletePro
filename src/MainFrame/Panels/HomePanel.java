@@ -16,8 +16,6 @@ public class HomePanel extends JPanel implements ActionListener{
     private ImageIcon icon;
     private JButton nextButton;
     private JButton previousButton;
-    private int x;
-    private int y;
 
 
 
@@ -29,24 +27,21 @@ public class HomePanel extends JPanel implements ActionListener{
         int width = 400;
         int height = 225;
 
-
         allImages = new BufferedImage[files.length];
         imageLabels = new JLabel[files.length];
 
         for(int i = 0; i < files.length; i++) {
             try {
                 allImages[i] = ImageIO.read(files[i]);
-                // resize the image to the desired dimensions
                 Image scaledImage = allImages[i].getScaledInstance(width, height, Image.SCALE_SMOOTH);
                 allImages[i] = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
                 allImages[i].getGraphics().drawImage(scaledImage, 0, 0, null);
-                // create a new JLabel with the resized image
                 imageLabels[i] = new JLabel();
                 icon = new ImageIcon(allImages[i]);
                 imageLabels[i].setIcon(icon);
                 imageLabels[i].setBorder(BorderFactory.createEmptyBorder(50, 20, 0, 0)); // move image down by 10 pixels and right by 20 pixels
                 add(imageLabels[i]);
-                imageLabels[i].setVisible(false); // hide all images initially
+                imageLabels[i].setVisible(false);
 
 
             } catch (IOException e) {
@@ -57,14 +52,14 @@ public class HomePanel extends JPanel implements ActionListener{
         setLayout(new FlowLayout(FlowLayout.LEFT));
 
 
-        nextButton = new JButton("Next");
+        nextButton = new JButton(new ImageIcon("Application Icons and Images/Right Arrow.png"));
+        nextButton.setBackground(new Color(0, 100, 246));
+        nextButton.setBounds(20, 350, 30, 30);
         nextButton.addActionListener(new ActionListener() {
             int currentImageIndex = 0;
 
             public void actionPerformed(ActionEvent e) {
-                // hide the current image
                 imageLabels[currentImageIndex].setVisible(false);
-                // show the next image
                 currentImageIndex++;
                 if (currentImageIndex == imageLabels.length) {
                     currentImageIndex = 0;

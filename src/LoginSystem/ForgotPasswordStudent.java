@@ -35,7 +35,7 @@ public class ForgotPasswordStudent implements ActionListener {
         panel.setSize(300, 600);
 
         // Logo Image
-        logoImage = new ImageIcon("Images/App logo.png");
+        logoImage = new ImageIcon("Application Icons and Images/App logo.png");
         logo = new JLabel(logoImage);
         logo.setBounds(0, 150, 300, 200);
         panel.add(logo);
@@ -116,7 +116,7 @@ public class ForgotPasswordStudent implements ActionListener {
         confirmButton.setOpaque(true);
         panel1.add(confirmButton);
 
-        backImage = new ImageIcon("Images/Back Button.png");
+        backImage = new ImageIcon("Application Icons and Images/Back Button.png");
         back = new JButton(backImage);
         back.addActionListener(this);
         back.setBounds(5, 15, 40, 38);

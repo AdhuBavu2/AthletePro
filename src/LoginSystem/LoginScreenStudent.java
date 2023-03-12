@@ -46,7 +46,7 @@ public class LoginScreenStudent implements ActionListener, MouseListener {
         panel.setSize(300, 600);
 
         // Logo Image
-        logoImage = new ImageIcon("Images/App logo.png");
+        logoImage = new ImageIcon("Application Icons and Images/App logo.png");
         title = new JLabel(logoImage);
         title.setBounds(0, 150, 300, 200);
         panel.add(title);
