@@ -18,7 +18,6 @@ public class HomePanel extends JPanel implements ActionListener{
     private JButton previousButton;
 
 
-
     public HomePanel(String name) {
         setBackground(new Color(0, 100, 246));
         File folder = new File("Slideshow Images");
@@ -43,7 +42,6 @@ public class HomePanel extends JPanel implements ActionListener{
                 add(imageLabels[i]);
                 imageLabels[i].setVisible(false);
 
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -52,7 +50,7 @@ public class HomePanel extends JPanel implements ActionListener{
         setLayout(new FlowLayout(FlowLayout.LEFT));
 
 
-        nextButton = new JButton(new ImageIcon("Application Icons and Images/Right Arrow.png"));
+        nextButton = new JButton(new ImageIcon("Application Icons and Images/Right Arrow Transparent.png"));
         nextButton.setBackground(new Color(0, 100, 246));
         nextButton.setBounds(20, 350, 30, 30);
         nextButton.addActionListener(new ActionListener() {
@@ -68,7 +66,8 @@ public class HomePanel extends JPanel implements ActionListener{
             }
         });
 
-        previousButton = new JButton("Previous");
+        previousButton = new JButton(new ImageIcon("Application Icons and Images/Left Arrow Transparent.png"));
+        previousButton.setBackground(new Color(0, 100, 246));
         previousButton.addActionListener(new ActionListener() {
             int currentImageIndex = 0;
 
@@ -88,13 +87,7 @@ public class HomePanel extends JPanel implements ActionListener{
         add(nextButton);
         add(previousButton);
 
-
     }
-
-
-
-
-
 
     @Override
     public void actionPerformed(ActionEvent e) {

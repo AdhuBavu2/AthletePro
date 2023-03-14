@@ -116,12 +116,12 @@ public class ForgotPasswordStudent implements ActionListener {
         confirmButton.setOpaque(true);
         panel1.add(confirmButton);
 
-        backImage = new ImageIcon("Application Icons and Images/Back Button.png");
+        backImage = new ImageIcon("Application Icons and Images/Back Button Transparent.png");
         back = new JButton(backImage);
         back.addActionListener(this);
         back.setBounds(5, 15, 40, 38);
         back.setFocusable(false);
-        back.setBackground(new Color(246, 254, 219));
+        back.setBackground(new Color(225, 218, 185));
         back.setOpaque(true);
         panel1.add(back);
 
