@@ -97,9 +97,6 @@ public class SignUpPanel extends JPanel implements ActionListener {
         submit.setOpaque(true);
         add(submit);
 
-
-
-
     }
 
     @Override

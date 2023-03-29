@@ -20,14 +20,26 @@ public class HomePanel extends JPanel implements ActionListener{
 
     public HomePanel(String name) {
         setBackground(new Color(0, 100, 246));
+        setLayout(null);
+
         File folder = new File("Slideshow Images");
         File[] files = folder.listFiles();
+
+        slideshowLabel = new JLabel("Recent Photos");
+        slideshowLabel.setBounds(50, 0, 350, 100);
+        slideshowLabel.setFont(new Font("Open Sans", Font.BOLD, 24));
+        slideshowLabel.setForeground(Color.BLACK);
+        add(slideshowLabel);
 
         int width = 400;
         int height = 225;
 
         allImages = new BufferedImage[files.length];
         imageLabels = new JLabel[files.length];
+
+        int x = 50;
+        int y = 80;
+        int gap = 10;
 
         for(int i = 0; i < files.length; i++) {
             try {
@@ -38,7 +50,7 @@ public class HomePanel extends JPanel implements ActionListener{
                 imageLabels[i] = new JLabel();
                 icon = new ImageIcon(allImages[i]);
                 imageLabels[i].setIcon(icon);
-                imageLabels[i].setBorder(BorderFactory.createEmptyBorder(50, 20, 0, 0)); // move image down by 10 pixels and right by 20 pixels
+                imageLabels[i].setBounds(x, y, width, height);
                 add(imageLabels[i]);
                 imageLabels[i].setVisible(false);
 
@@ -47,12 +59,14 @@ public class HomePanel extends JPanel implements ActionListener{
             }
         }
 
-        setLayout(new FlowLayout(FlowLayout.LEFT));
-
+        int buttonWidth = 30;
+        int buttonHeight = 30;
+        int buttonX = 200;
+        int buttonY = 330;
 
         nextButton = new JButton(new ImageIcon("Application Icons and Images/Right Arrow Transparent.png"));
-        nextButton.setBackground(new Color(0, 100, 246));
-        nextButton.setBounds(20, 350, 30, 30);
+        nextButton.setBackground(new Color(246, 254, 219));
+        nextButton.setBounds(buttonX, buttonY, buttonWidth, buttonHeight);
         nextButton.addActionListener(new ActionListener() {
             int currentImageIndex = 0;
 
@@ -66,15 +80,18 @@ public class HomePanel extends JPanel implements ActionListener{
             }
         });
 
+
+        buttonX += buttonWidth + gap;
+
         previousButton = new JButton(new ImageIcon("Application Icons and Images/Left Arrow Transparent.png"));
-        previousButton.setBackground(new Color(0, 100, 246));
+        previousButton.setBackground(new Color(246, 254, 219));
+        previousButton.setBounds(buttonX, buttonY, buttonWidth, buttonHeight);
         previousButton.addActionListener(new ActionListener() {
             int currentImageIndex = 0;
 
             public void actionPerformed(ActionEvent e) {
-                // hide the current image
+
                 imageLabels[currentImageIndex].setVisible(false);
-                // show the previous image
                 currentImageIndex--;
                 if (currentImageIndex < 0) {
                     currentImageIndex = imageLabels.length - 1;
@@ -84,9 +101,9 @@ public class HomePanel extends JPanel implements ActionListener{
         });
 
         imageLabels[0].setVisible(true);
+
         add(nextButton);
         add(previousButton);
-
     }
 
     @Override
