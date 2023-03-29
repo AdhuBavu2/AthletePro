@@ -97,7 +97,7 @@ public class LoginScreenStudent implements ActionListener, MouseListener {
         studentForgotPassword.setBackground(new Color(246, 254, 219));
         background.add(studentForgotPassword);
 
-        //
+
         studentCreateAccount = new JLabel("Don't have an account?");
         studentCreateAccount.addMouseListener(this);
         studentCreateAccount.setBounds(90, 453, 140, 25);
@@ -113,7 +113,6 @@ public class LoginScreenStudent implements ActionListener, MouseListener {
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-
     }
 
     public static void main(String[] args) {

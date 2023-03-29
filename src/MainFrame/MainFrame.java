@@ -19,15 +19,11 @@ public class MainFrame implements ActionListener, MouseListener {
     private JButton logoutButton;
     private JLabel nameLabel;
     private String dbName;
-    // Tabbed pane
+
 
     public MainFrame(String name) {
 
         dbName = name;
-
-
-
-
 
         buttonPanel = new JPanel();
         buttonPanel.setLayout(null);
@@ -35,8 +31,6 @@ public class MainFrame implements ActionListener, MouseListener {
         buttonPanel.setBounds(0, 0, 1000, 600);
         buttonPanel.setSize(1000, 600);
         buttonPanel.setBorder(new EmptyBorder(15, 0, 10, 0));
-
-
 
         frame = new JFrame("Main Screen");
         frame.add(buttonPanel);

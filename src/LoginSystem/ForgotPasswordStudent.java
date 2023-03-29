@@ -43,7 +43,7 @@ public class ForgotPasswordStudent implements ActionListener {
         // Panel1
         panel1 = new JPanel();
         panel1.setLayout(null);
-        panel1.setBackground(new Color(225, 218, 185));
+        panel1.setBackground(new Color(246, 254, 219));
         panel1.setBounds(300, 0, 500, 600);
         panel1.setSize(500, 600);
 
@@ -121,7 +121,7 @@ public class ForgotPasswordStudent implements ActionListener {
         back.addActionListener(this);
         back.setBounds(5, 15, 40, 38);
         back.setFocusable(false);
-        back.setBackground(new Color(225, 218, 185));
+        back.setBackground(new Color(246, 254, 219));
         back.setOpaque(true);
         panel1.add(back);
 
