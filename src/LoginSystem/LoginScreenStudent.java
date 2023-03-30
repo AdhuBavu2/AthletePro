@@ -12,7 +12,6 @@ import java.sql.*;
 
 public class LoginScreenStudent implements ActionListener, MouseListener {
     private JFrame frame;
-
     private JPanel background;
     private JLabel studentCenterTitle;
     private JLabel userID;
@@ -27,8 +26,6 @@ public class LoginScreenStudent implements ActionListener, MouseListener {
     private ImageIcon logoImage;
     private JLabel title;
 
-
-
     public LoginScreenStudent() {
         // Background image
         background = new JPanel();
@@ -36,7 +33,6 @@ public class LoginScreenStudent implements ActionListener, MouseListener {
         background.setBounds(300, 0, 500, 600);
         background.setBackground(new Color(246, 254, 219));
         background.setSize(500, 600);
-
 
         // Panel
         panel = new JPanel();
@@ -50,7 +46,6 @@ public class LoginScreenStudent implements ActionListener, MouseListener {
         title = new JLabel(logoImage);
         title.setBounds(0, 150, 300, 200);
         panel.add(title);
-
 
         // Main student login title
         studentCenterTitle = new JLabel("Student Login");
@@ -96,7 +91,6 @@ public class LoginScreenStudent implements ActionListener, MouseListener {
         studentForgotPassword.setBounds(90, 375, 110, 25);
         studentForgotPassword.setBackground(new Color(246, 254, 219));
         background.add(studentForgotPassword);
-
 
         studentCreateAccount = new JLabel("Don't have an account?");
         studentCreateAccount.addMouseListener(this);
@@ -190,6 +184,5 @@ public class LoginScreenStudent implements ActionListener, MouseListener {
         else if(e.getSource() == studentCreateAccount) {
             studentCreateAccount.setForeground(Color.BLACK);
         }
-
     }
 }

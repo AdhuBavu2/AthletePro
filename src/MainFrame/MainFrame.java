@@ -15,11 +15,9 @@ public class MainFrame implements ActionListener, MouseListener {
     private JFrame frame;
     private JPanel buttonPanel;
     private JPanel logoutPanel;
-
     private JButton logoutButton;
     private JLabel nameLabel;
     private String dbName;
-
 
     public MainFrame(String name) {
 
@@ -51,7 +49,6 @@ public class MainFrame implements ActionListener, MouseListener {
         tabbedPane.addTab("<html><body leftmargin=10 topmargin=8 marginwidth=10 marginheight=5 style='font-family:Tahoma;color:black'>Dashboard</body></html>", new HomePanel(name));
         tabbedPane.addTab("<html><body leftmargin=10 topmargin=8 marginwidth=10 marginheight=5 style='font-family:Tahoma;color:black'>Documents</body></html>", new DocumentPanel());
         tabbedPane.addTab("<html><body leftmargin=10 topmargin=8 marginwidth=10 marginheight=5 style='font-family:Tahoma;color:black'>Sign Up</body></html>", new SignUpPanel(name));
-        tabbedPane.addTab("<html><body leftmargin=10 topmargin=8 marginwidth=10 marginheight=5 style='font-family:Tahoma;color:black'>Videos</body></html>", new VideosPanel(name));
         tabbedPane.addTab("<html><body leftmargin=10 topmargin=8 marginwidth=10 marginheight=5 style='font-family:Tahoma;color:black'>Results</body></html>", new ResultsPanel(name));
         tabbedPane.setBounds(25,70,960,500);
         tabbedPane.setBackground(new Color(246, 254, 219));

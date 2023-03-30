@@ -25,9 +25,7 @@ public class ResultsPanel extends JPanel {
         add(resultsArea);
 
         try {
-
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/computer_science_ia", "root", "");
-
 
             String query = "SELECT * FROM results WHERE name = ?";
             PreparedStatement pstmt = connection.prepareStatement(query);

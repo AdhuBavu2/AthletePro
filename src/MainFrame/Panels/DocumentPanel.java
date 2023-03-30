@@ -6,17 +6,49 @@ import java.awt.event.*;
 import java.io.File;
 import java.nio.file.Files;
 import java.sql.*;
+import java.util.ArrayList;
 
-public class DocumentPanel extends JPanel {
+public class DocumentPanel extends JPanel implements ActionListener {
     private JButton uploadButton;
+    private JLabel uploadTitle;
+    private ArrayList<String> listOfDocuments = new ArrayList<String>();
+    private JLabel comboboxLabel;
+    private JComboBox documentCombobox;
+    private JLabel uploadFile;
+    private JButton submit;
 
     public DocumentPanel() {
         setBackground(new Color(0, 120, 246));
         setLayout(null);
 
-        // Create and add the upload button
+        listOfDocuments.add("$75 Dollar Participation Fee");
+        listOfDocuments.add("Assumption Of Risk Form");
+        listOfDocuments.add("Athlete Physical Form");
+
+        comboboxLabel = new JLabel("Select Document");
+        comboboxLabel.setBounds(550, 97, 350, 100);
+        comboboxLabel.setFont(new Font("Open Sans", Font.BOLD, 16));
+        comboboxLabel.setForeground(Color.BLACK);
+        add(comboboxLabel);
+
+        documentCombobox = new JComboBox(listOfDocuments.toArray(new String[0]));
+        documentCombobox.setBounds(550, 170, 225, 33);
+        add(documentCombobox);
+
+        uploadTitle = new JLabel("Upload Completed Documents");
+        uploadTitle.setBounds(550, 30, 350, 100);
+        uploadTitle.setFont(new Font("Open Sans", Font.BOLD, 24));
+        uploadTitle.setForeground(Color.BLACK);
+        add(uploadTitle);
+
+        uploadFile = new JLabel("Upload Document");
+        uploadFile.setBounds(550, 197, 350, 100);
+        uploadFile.setFont(new Font("Open Sans", Font.BOLD, 16));
+        uploadFile.setForeground(Color.BLACK);
+        add(uploadFile);
+
         uploadButton = new JButton("Upload File");
-        uploadButton.setBounds(10, 10, 100, 30);
+        uploadButton.setBounds(550, 270, 100, 30);
         uploadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -25,7 +57,6 @@ public class DocumentPanel extends JPanel {
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File selectedFile = fileChooser.getSelectedFile();
 
-                    // Insert the file into the database
                     try {
                         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/computer_science_ia", "root", "");
                         String name = selectedFile.getName();
@@ -44,5 +75,19 @@ public class DocumentPanel extends JPanel {
             }
         });
         add(uploadButton);
+
+        submit = new JButton("Submit Document");
+        submit.addActionListener(this);
+        submit.setBounds(550, 350, 225, 33);
+        submit.setFocusable(false);
+        submit.setBackground(new Color(246, 254, 219));
+        submit.setOpaque(true);
+        add(submit);
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }

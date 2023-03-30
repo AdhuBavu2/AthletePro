@@ -18,14 +18,48 @@ public class SignUpPanel extends JPanel implements ActionListener {
     private JComboBox eventsCombobox;
     private JLabel eventsLabel;
     private JButton submit;
+    private JLabel scheduleLabel;
+    private JLabel scheduleInfoLabel;
 
     public SignUpPanel(String name) {
         setBackground(new Color(20, 100, 246));
         setLayout(null);
 
+        scheduleLabel = new JLabel("Hillcrest Track Schedule");
+        scheduleLabel.setBounds(30, 0, 350, 100);
+        scheduleLabel.setFont(new Font("Open Sans", Font.BOLD, 24));
+        scheduleLabel.setForeground(Color.BLACK);
+        add(scheduleLabel);
+
+        scheduleInfoLabel = new JLabel();
+        scheduleInfoLabel.setBounds(30, 70, 350, 200);
+        scheduleInfoLabel.setFont(new Font("Open Sans", Font.PLAIN, 14));
+        add(scheduleInfoLabel);
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/computer_science_ia", "root", "");
+            PreparedStatement statement = connection.prepareStatement("SELECT * from track_meets");
+            ResultSet resultSet = statement.executeQuery();
+            StringBuilder sb = new StringBuilder("<html>");
+            while (resultSet.next()) {
+                sb.append(resultSet.getString("name")).append(": ")
+                        .append(resultSet.getString("location")).append("<br>");
+            }
+            sb.append("</html>");
+            scheduleInfoLabel.setText(sb.toString());
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException sqlException) {
+            JOptionPane.showMessageDialog(null, "Error in connection");
+        }
+
+
         signupTitle = new JLabel("Sign Up");
         signupTitle.setBounds(525, 0, 350, 100);
-        signupTitle.setFont(new Font("Open Sans", Font.BOLD, 32));
+        signupTitle.setFont(new Font("Open Sans", Font.BOLD, 24));
         signupTitle.setForeground(Color.BLACK);
         add(signupTitle);
 
@@ -96,6 +130,8 @@ public class SignUpPanel extends JPanel implements ActionListener {
         submit.setBackground(new Color(246, 254, 219));
         submit.setOpaque(true);
         add(submit);
+
+
 
     }
 
