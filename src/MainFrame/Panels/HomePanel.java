@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.*;
 
 public class HomePanel extends JPanel implements ActionListener{
     private JLabel slideshowLabel;
@@ -16,6 +17,8 @@ public class HomePanel extends JPanel implements ActionListener{
     private ImageIcon icon;
     private JButton nextButton;
     private JButton previousButton;
+    private JLabel announcementLabel;
+    private JTextArea announcementArea;
 
 
     public HomePanel(String name) {
@@ -104,6 +107,35 @@ public class HomePanel extends JPanel implements ActionListener{
 
         add(nextButton);
         add(previousButton);
+
+        announcementLabel = new JLabel("Announcements");
+        announcementLabel.setBounds(530, 0, 350, 100);
+        announcementLabel.setFont(new Font("Open Sans", Font.BOLD, 24));
+        announcementLabel.setForeground(Color.BLACK);
+        add(announcementLabel);
+        
+
+        announcementArea = new JTextArea();
+        announcementArea.setBounds(530, 80, 400, 340);
+        announcementArea.setLineWrap(true);
+        announcementArea.setWrapStyleWord(true);
+        announcementArea.setEditable(false);
+        add(announcementArea);
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/computer_science_ia", "root", "");
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM announcements");
+
+            while(resultSet.next()) {
+                String date = resultSet.getString("date");
+                String text = resultSet.getString("text");
+                announcementArea.append(date + " - " + text + "\n\n");
+            }
+
+        } catch (SQLException sqlException) {
+            JOptionPane.showMessageDialog(null, "Error in Connection");
+        }
     }
 
     @Override
