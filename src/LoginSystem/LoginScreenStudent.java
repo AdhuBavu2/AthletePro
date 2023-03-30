@@ -1,5 +1,6 @@
 package LoginSystem;
 
+import AdminLogin.LoginScreenAdmin;
 import MainFrame.MainFrame;
 
 import javax.swing.*;
@@ -97,6 +98,11 @@ public class LoginScreenStudent implements ActionListener, MouseListener {
         studentCreateAccount.setBounds(90, 453, 140, 25);
         background.add(studentCreateAccount);
 
+        adminLabel = new JLabel("I am an Administrator!");
+        adminLabel.addMouseListener(this);
+        adminLabel.setBounds(90, 473, 140, 25);
+        background.add(adminLabel);
+
         // Frame
         frame = new JFrame("Login Screen");
         frame.add(background);
@@ -124,8 +130,8 @@ public class LoginScreenStudent implements ActionListener, MouseListener {
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery("select * from students");
 
-                while(resultSet.next()) {
-                    if(resultSet.getString("userName").equals(studentUserID) && resultSet.getString("password").equals(studentPassword)) {
+                while (resultSet.next()) {
+                    if (resultSet.getString("userName").equals(studentUserID) && resultSet.getString("password").equals(studentPassword)) {
                         frame.dispose();
                         MainFrame mainFrame = new MainFrame(resultSet.getString("name"));
                     } else {
@@ -141,16 +147,16 @@ public class LoginScreenStudent implements ActionListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(e.getSource() == studentForgotPassword) {
+        if (e.getSource() == studentForgotPassword) {
             frame.dispose();
             ForgotPasswordStudent forgotPasswordStudent = new ForgotPasswordStudent();
-        }
-
-        else if(e.getSource() == studentCreateAccount) {
+        } else if (e.getSource() == studentCreateAccount) {
             frame.dispose();
             CreateAccountStudent createAccountStudent = new CreateAccountStudent();
+        } else if (e.getSource() == adminLabel) {
+            frame.dispose();
+            LoginScreenAdmin loginScreenAdmin = new LoginScreenAdmin();
         }
-
     }
 
     @Override
@@ -165,24 +171,24 @@ public class LoginScreenStudent implements ActionListener, MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        if(e.getSource() == studentForgotPassword) {
+        if (e.getSource() == studentForgotPassword) {
             studentForgotPassword.setForeground(Color.RED);
-        }
-
-        else if(e.getSource() == studentCreateAccount) {
+        } else if (e.getSource() == studentCreateAccount) {
             studentCreateAccount.setForeground(Color.GREEN);
+        } else if (e.getSource() == adminLabel) {
+            adminLabel.setForeground(Color.BLUE);
         }
 
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        if(e.getSource() == studentForgotPassword) {
+        if (e.getSource() == studentForgotPassword) {
             studentForgotPassword.setForeground(Color.BLACK);
-        }
-
-        else if(e.getSource() == studentCreateAccount) {
+        } else if (e.getSource() == studentCreateAccount) {
             studentCreateAccount.setForeground(Color.BLACK);
+        } else if (e.getSource() == adminLabel) {
+            adminLabel.setForeground(Color.BLACK);
         }
     }
 }

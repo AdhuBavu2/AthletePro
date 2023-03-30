@@ -2,10 +2,18 @@ package MainFrame.Panels;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 public class DocumentPanel extends JPanel implements ActionListener {
@@ -16,10 +24,34 @@ public class DocumentPanel extends JPanel implements ActionListener {
     private JComboBox documentCombobox;
     private JLabel uploadFile;
     private JButton submit;
+    private JLabel documentLabel;
+    private JLabel linkLabel;
 
     public DocumentPanel() {
         setBackground(new Color(0, 120, 246));
         setLayout(null);
+
+        documentLabel = new JLabel("Hillcrest Track Documents");
+        documentLabel.setBounds(50, 30, 350, 100);
+        documentLabel.setFont(new Font("Open Sans", Font.BOLD, 24));
+        documentLabel.setForeground(Color.BLACK);
+        add(documentLabel);
+
+        linkLabel = new JLabel();
+        linkLabel.setText("<html><a href=\\\"http://www.example.com\\\">Click here to visit example.com</a></html>");
+        linkLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI("http://www.example.com"));
+                } catch (IOException | URISyntaxException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+        add(linkLabel);
+
 
         listOfDocuments.add("$75 Dollar Participation Fee");
         listOfDocuments.add("Assumption Of Risk Form");
