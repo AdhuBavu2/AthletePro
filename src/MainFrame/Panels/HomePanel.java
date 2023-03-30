@@ -113,7 +113,7 @@ public class HomePanel extends JPanel implements ActionListener{
         announcementLabel.setFont(new Font("Open Sans", Font.BOLD, 24));
         announcementLabel.setForeground(Color.BLACK);
         add(announcementLabel);
-        
+
 
         announcementArea = new JTextArea();
         announcementArea.setBounds(530, 80, 400, 340);
