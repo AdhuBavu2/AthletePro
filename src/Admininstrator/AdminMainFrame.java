@@ -1,5 +1,6 @@
 package Admininstrator;
 
+import AdminLogin.LoginScreenAdmin;
 import Admininstrator.Panels.AdminDashboardPanel;
 import Admininstrator.Panels.AdminResultsPanel;
 import Admininstrator.Panels.AdminSignUpPanel;
@@ -78,6 +79,9 @@ public class AdminMainFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if(e.getSource() == logoutButton) {
+            frame.dispose();
+            LoginScreenAdmin loginScreenStudent = new LoginScreenAdmin();
+        }
     }
 }
