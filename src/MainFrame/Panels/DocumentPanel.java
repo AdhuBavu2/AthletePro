@@ -26,6 +26,8 @@ public class DocumentPanel extends JPanel implements ActionListener {
     private JButton submit;
     private JLabel documentLabel;
     private JLabel linkLabel;
+    private JLabel linkLabel1;
+    private JLabel linkLabel2;
 
     public DocumentPanel() {
         setBackground(new Color(0, 120, 246));
@@ -38,19 +40,56 @@ public class DocumentPanel extends JPanel implements ActionListener {
         add(documentLabel);
 
         linkLabel = new JLabel();
-        linkLabel.setText("<html><a href=\\\"http://www.example.com\\\">Click here to visit example.com</a></html>");
+        linkLabel.setBounds(50, 100, 350, 100);
+        linkLabel.setFont(new Font("Open Sans", Font.BOLD, 16));
+        linkLabel.setText("<html><a href=\\\"https://student.canyonsdistrict.org/scripts/wsisa.dll/WService=wsEAplus/seplog01.w\\\">Click here to visit Skyward to pay the fee</a></html>");
         linkLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 try {
-                    Desktop.getDesktop().browse(new URI("http://www.example.com"));
+                    Desktop.getDesktop().browse(new URI("https://student.canyonsdistrict.org/scripts/wsisa.dll/WService=wsEAplus/seplog01.w"));
                 } catch (IOException | URISyntaxException ex) {
                     ex.printStackTrace();
                 }
             }
         });
-
         add(linkLabel);
+
+        linkLabel1 = new JLabel();
+        linkLabel1.setBounds(50, 150, 350, 100);
+        linkLabel1.setFont(new Font("Open Sans", Font.BOLD, 16));
+        linkLabel1.setForeground(Color.BLACK);
+        linkLabel1.setText("<html><a href=\\\"https://willowsprings.canyonsdistrict.org/wp-content/uploads/sites/342/2019/11/Responsible_Use_Guideline1.pdf\\\">Click here to fill the Assumption of Risk form</a></html>");
+        linkLabel1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://willowsprings.canyonsdistrict.org/wp-content/uploads/sites/342/2019/11/Responsible_Use_Guideline1.pdf"));
+                } catch (IOException | URISyntaxException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        add(linkLabel1);
+
+        linkLabel2 = new JLabel();
+        linkLabel2.setBounds(50, 200, 350, 100);
+        linkLabel2.setFont(new Font("Open Sans", Font.BOLD, 16));
+        linkLabel2.setForeground(Color.BLACK);
+        linkLabel2.setText("<html><a href=\\\"https://www.uhsaa.org/forms/forma.pdf\\\">Click here to complete the UHSAA Physical Form</a></html>");
+        linkLabel2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://www.uhsaa.org/forms/forma.pdf"));
+                } catch (IOException | URISyntaxException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        add(linkLabel2);
+
+
 
 
         listOfDocuments.add("$75 Dollar Participation Fee");

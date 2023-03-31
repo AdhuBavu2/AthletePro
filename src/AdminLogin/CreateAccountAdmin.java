@@ -1,4 +1,6 @@
-package LoginSystem;
+package AdminLogin;
+
+import LoginSystem.EmailValidator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +11,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class CreateAccountStudent implements ActionListener {
+public class CreateAccountAdmin implements ActionListener {
     private JFrame frame;
 
     private JPanel panel;
@@ -35,7 +37,7 @@ public class CreateAccountStudent implements ActionListener {
     private JButton back;
     private String[] choices = {"What is your nick name?", "What is your mothers name?", "What is the name of your first pet?"};
 
-    public CreateAccountStudent() {
+    public CreateAccountAdmin() {
         // Panel
         panel = new JPanel();
         panel.setLayout(null);
@@ -162,7 +164,7 @@ public class CreateAccountStudent implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == back) {
             frame.dispose();
-            LoginScreenStudent back = new LoginScreenStudent();
+            LoginScreenAdmin back = new LoginScreenAdmin();
         }
         EmailValidator emailValidator = new EmailValidator();
 
@@ -192,10 +194,10 @@ public class CreateAccountStudent implements ActionListener {
                     Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/computer_science_ia", "root", "");
                     Statement statement = connection.createStatement();
 
-                    statement.executeUpdate("insert into students (userName, name, phone, password, email, securityQuestion, answer) values('" + userName + "', '" + name + "', '" + phone + "', '" + password + "', '" + email + "', '" + securityQuestion + "', '" + answer + "')");
+                    statement.executeUpdate("insert into administrators (userName, name, phone, password, email, securityQuestion, answer) values('" + userName + "', '" + name + "', '" + phone + "', '" + password + "', '" + email + "', '" + securityQuestion + "', '" + answer + "')");
                     JOptionPane.showMessageDialog(null, "Thanks for registration");
                     frame.dispose();
-                    LoginScreenStudent loginScreen = new LoginScreenStudent();
+                    LoginScreenAdmin loginScreen = new LoginScreenAdmin();
 
                 }
                 catch (SQLException sqlException) {

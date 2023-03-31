@@ -126,12 +126,14 @@ public class LoginScreenStudent implements ActionListener, MouseListener {
             String studentPassword = String.valueOf(passwordField.getPassword());
 
             try {
-                Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/computer_science_ia", "root", "");
+                Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/computer_science_ia",
+                        "root", "");
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery("select * from students");
 
                 while (resultSet.next()) {
-                    if (resultSet.getString("userName").equals(studentUserID) && resultSet.getString("password").equals(studentPassword)) {
+                    if (resultSet.getString("userName").equals(studentUserID) && resultSet.getString("password").
+                            equals(studentPassword)) {
                         frame.dispose();
                         MainFrame mainFrame = new MainFrame(resultSet.getString("name"));
                     } else {

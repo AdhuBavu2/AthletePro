@@ -1,6 +1,7 @@
 package AdminLogin;
 
 import Admininstrator.AdminMainFrame;
+import LoginSystem.LoginScreenStudent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -143,7 +144,16 @@ public class LoginScreenAdmin implements ActionListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        if (e.getSource() == studentForgotPassword) {
+            frame.dispose();
+            ForgotPasswordAdmin forgotPasswordStudent = new ForgotPasswordAdmin();
+        } else if (e.getSource() == studentCreateAccount) {
+            frame.dispose();
+            CreateAccountAdmin createAccountStudent = new CreateAccountAdmin();
+        } else if (e.getSource() == adminLabel) {
+            frame.dispose();
+            LoginScreenStudent loginScreenAdmin = new LoginScreenStudent();
+        }
     }
 
     @Override
@@ -158,11 +168,26 @@ public class LoginScreenAdmin implements ActionListener, MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        if (e.getSource() == studentForgotPassword) {
+            studentForgotPassword.setForeground(Color.RED);
+        } else if (e.getSource() == studentCreateAccount) {
+            studentCreateAccount.setForeground(Color.GREEN);
+        } else if (e.getSource() == adminLabel) {
+            adminLabel.setForeground(Color.BLUE);
+        }
+
 
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+        if (e.getSource() == studentForgotPassword) {
+            studentForgotPassword.setForeground(Color.BLACK);
+        } else if (e.getSource() == studentCreateAccount) {
+            studentCreateAccount.setForeground(Color.BLACK);
+        } else if (e.getSource() == adminLabel) {
+            adminLabel.setForeground(Color.BLACK);
+        }
 
     }
 }
