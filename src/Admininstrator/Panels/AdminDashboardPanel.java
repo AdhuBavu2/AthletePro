@@ -4,10 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class AdminDashboardPanel extends JPanel implements ActionListener {
     private JLabel announcementTitle;
@@ -16,7 +13,8 @@ public class AdminDashboardPanel extends JPanel implements ActionListener {
     private JLabel announcementLabel;
     private JTextArea textArea;
     private JButton submit;
-
+    private JLabel listOfAthletes;
+    private JLabel athleteLabel;
 
     public AdminDashboardPanel() {
         setBackground(new Color(0, 100, 246));
@@ -55,6 +53,37 @@ public class AdminDashboardPanel extends JPanel implements ActionListener {
         submit.setBackground(new Color(246, 254, 219));
         submit.setOpaque(true);
         add(submit);
+
+        athleteLabel = new JLabel("List of Athletes Registered");
+        athleteLabel.setBounds(600, 30, 350, 100);
+        athleteLabel.setFont(new Font("Open Sans", Font.BOLD, 24));
+        athleteLabel.setForeground(Color.BLACK);
+        add(athleteLabel);
+
+
+        listOfAthletes = new JLabel();
+        listOfAthletes.setBounds(600, 50, 350, 200);
+        listOfAthletes.setFont(new Font("Open Sans", Font.PLAIN, 14));
+        add(listOfAthletes);
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/computer_science_ia", "root", "");
+            PreparedStatement statement = connection.prepareStatement("SELECT name from students");
+            ResultSet resultSet = statement.executeQuery();
+            StringBuilder sb = new StringBuilder("<html>");
+            while (resultSet.next()) {
+                sb.append(resultSet.getString("name")).append("<br>");
+            }
+            sb.append("</html>");
+            listOfAthletes.setText(sb.toString());
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException sqlException) {
+            JOptionPane.showMessageDialog(null, "Error in connection");
+        }
 
     }
 

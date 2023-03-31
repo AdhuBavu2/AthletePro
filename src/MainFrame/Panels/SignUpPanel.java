@@ -132,7 +132,6 @@ public class SignUpPanel extends JPanel implements ActionListener {
         add(submit);
 
 
-
     }
 
     @Override

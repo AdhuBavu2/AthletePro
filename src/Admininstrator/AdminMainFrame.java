@@ -1,7 +1,6 @@
 package Admininstrator;
 
 import Admininstrator.Panels.AdminDashboardPanel;
-import Admininstrator.Panels.AdminDocumentPanel;
 import Admininstrator.Panels.AdminResultsPanel;
 import Admininstrator.Panels.AdminSignUpPanel;
 
@@ -47,7 +46,6 @@ public class AdminMainFrame implements ActionListener {
         var tabbedPane = new JTabbedPane();
         tabbedPane.setFont(new Font("Open Sans", Font.PLAIN, 16));
         tabbedPane.addTab("<html><body leftmargin=10 topmargin=8 marginwidth=10 marginheight=5 style='font-family:Tahoma;color:black'>Dashboard</body></html>", new AdminDashboardPanel());
-        tabbedPane.addTab("<html><body leftmargin=10 topmargin=8 marginwidth=10 marginheight=5 style='font-family:Tahoma;color:black'>Documents</body></html>", new AdminDocumentPanel());
         tabbedPane.addTab("<html><body leftmargin=10 topmargin=8 marginwidth=10 marginheight=5 style='font-family:Tahoma;color:black'>Sign Up</body></html>", new AdminSignUpPanel());
         tabbedPane.addTab("<html><body leftmargin=10 topmargin=8 marginwidth=10 marginheight=5 style='font-family:Tahoma;color:black'>Results</body></html>", new AdminResultsPanel());
         tabbedPane.setBounds(25, 70, 960, 500);
