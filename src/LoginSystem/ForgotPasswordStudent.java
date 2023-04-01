@@ -166,13 +166,15 @@ public class ForgotPasswordStudent implements ActionListener {
             String answer1 = answerField.getText();
 
             try {
-                Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/computer_science_ia", "root", "");
+                Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/computer_science_ia",
+                        "root", "");
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery("select answer from students where userName='"+userName+"'");
 
                 resultSet.next();
                 if(resultSet.getString("answer").equals(answer1)) {
-                    statement.executeUpdate("update students set password='"+newPassword+"' where userName='"+userName+"' and answer='"+answer1+"'");
+                    statement.executeUpdate("update students set password='"+newPassword+"' where userName='"+userName+"' " +
+                            "and answer='"+answer1+"'");
                     JOptionPane.showMessageDialog(null, "Your password has been updated");
                     frame.dispose();
                     LoginScreenStudent loginScreenStudent = new LoginScreenStudent();
