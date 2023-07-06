@@ -140,7 +140,6 @@ public class ForgotPasswordStudent implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == search) {
             String userName = userIDField.getText();
-
             try {
                 Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/computer_science_ia", "root", "");
                 Statement statement = connection.createStatement();
